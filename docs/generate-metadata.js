@@ -2,6 +2,7 @@
 
 import metadata from 'react-component-metadata-fix';
 import glob from 'glob';
+import path from 'path';
 import promisify from 'es6-promisify';
 import fsp from 'fs-promise';
 import marked from 'marked';
@@ -9,13 +10,13 @@ import marked from 'marked';
 let globp = promisify(glob);
 
 marked.setOptions({
-    xhtml: true
+  xhtml: true
 });
 
 // removes doclet syntax from comments
 let cleanDoclets = desc => {
-    let idx = desc.indexOf('@');
-    return (idx === -1 ? desc : desc.substr(0, idx )).trim();
+  let idx = desc.indexOf('@');
+  return (idx === -1 ? desc : desc.substr(0, idx)).trim();
 };
 
 let cleanDocletValue = str => str.trim().replace(/^\{/, '').replace(/\}$/, '');
@@ -25,7 +26,7 @@ let isLiteral = str => (/^('|")/).test(str.trim());
  *
  * @param  {ComponentMetadata|PropMetadata} obj
  */
-function parseDoclets(obj) {
+function parseDoclets (obj) {
   obj.doclets = metadata.parseDoclets(obj.desc || '') || {};
   obj.desc = cleanDoclets(obj.desc || '');
   obj.descHtml = marked(obj.desc || '');
@@ -38,7 +39,7 @@ function parseDoclets(obj) {
  * @param  {Object} props     Object Hash of the prop metadata
  * @param  {String} propName
  */
-function applyPropDoclets(props, propName) {
+function applyPropDoclets (props, propName) {
   let prop = props[propName];
   let doclets = prop.doclets;
   let value;
@@ -50,7 +51,7 @@ function applyPropDoclets(props, propName) {
     value = cleanDocletValue(doclets.type);
     prop.type.name = value;
 
-    if ( value[0] === '(' ) {
+    if (value[0] === '(') {
       value = value.substring(1, value.length - 1).split('|');
 
       prop.type.value = value;
@@ -60,7 +61,7 @@ function applyPropDoclets(props, propName) {
 
   // Use @required to mark a prop as required
   // useful for custom propTypes where there isn't a `.isRequired` addon
-  if ( doclets.required) {
+  if (doclets.required) {
     prop.required = true;
   }
 
@@ -70,33 +71,34 @@ function applyPropDoclets(props, propName) {
   }
 }
 
-export default function() {
-    return globp(__dirname + '/../src/**/*.js')
-        .then( files => {
-            let results = files.map(
-                filename => fsp.readFile(filename, {encoding: 'utf-8'})
-                    .then(content => metadata(content)));
-            return Promise.all(results)
-                .then( data => {
-                    let result = {};
-                    data.forEach(components => {
-                        Object.keys(components).forEach(key => {
-                            const component = components[key];
+export default () => {
+  return globp(path.resolve(__dirname, '/../src/**/*.js'))
+    .then(files => {
+      let results = files.map(
+        filename => fsp.readFile(filename, {encoding: 'utf-8'})
+        .then(content => metadata(content)));
 
-                            parseDoclets(component);
+      return Promise.all(results)
+        .then(data => {
+          let result = {};
+          data.forEach(components => {
+            Object.keys(components).forEach(key => {
+              const component = components[key];
 
-                            Object.keys(component.props).forEach( propName => {
-                                const prop = component.props[propName];
+              parseDoclets(component);
 
-                                parseDoclets(prop);
-                                applyPropDoclets(component.props, propName);
-                            });
-                        });
+              Object.keys(component.props).forEach(propName => {
+                const prop = component.props[propName];
 
-                        // combine all the component metadata into one large object
-                        result = { ...result, ...components };
-                    });
-                    return result;
-                }).catch( e => setTimeout(()=> { throw e; }));
-        });
-}
+                parseDoclets(prop);
+                applyPropDoclets(component.props, propName);
+              });
+            });
+
+            // combine all the component metadata into one large object
+            result = { ...result, ...components };
+          });
+          return result;
+        }).catch(e => setTimeout(() => { throw e; }));
+    });
+};
