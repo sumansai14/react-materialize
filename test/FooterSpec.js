@@ -13,7 +13,7 @@ let links =
 let wrapper = shallow(
   <Footer
     moreLinks={moreLinks}
-    copyrights='&copy; 2015 Copyright Text'
+    copyrights='&copy; 2017 Copyright Text'
     links={links}
   >
     <p>Footer Content</p>
