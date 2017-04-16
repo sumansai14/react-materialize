@@ -11,10 +11,12 @@ import metadata from './generate-metadata';
 
 const docsBuilt = path.join(__dirname, 'dist');
 
-function generateHTML(fileName) {
-  return new Promise( resolve => {
+const generateHTML = (fileName) => {
+  return new Promise((resolve, reject) => {
     const location = fileName === 'index.html' ? '/' : `/${fileName}`;
     match({routes, location}, (error, redirectLocation, renderProps) => {
+      if (error) reject(error);
+
       let html = ReactDOMServer.renderToString(
         <RoutingContext {...renderProps} />
       );
@@ -23,9 +25,9 @@ function generateHTML(fileName) {
       resolve(write);
     });
   });
-}
+};
 
-function BuildDocs() {
+const BuildDocs = () => {
   return metadata()
     .then(propData => {
       Root.assetBaseUrl = '';
@@ -36,7 +38,7 @@ function BuildDocs() {
       return Promise.all(pagesGenerators);
     })
     .then(() => console.log('Built: '.cyan + 'docs'.green));
-}
+};
 
 BuildDocs()
   .catch(err => {
