@@ -56,13 +56,13 @@
     "jsdom-global": "^2.1.1",
     "materialize-css": "^0.98.0",
     "mocha": "^3.2.0",
-    "react-addons-test-utils": "^15.4.2",
+    "react-addons-test-utils": "~15.0.2",
     "sinon": "^1.17.7",
     "webpack": "^1.13.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "~15.0.0",
+    "react-dom": "^15.0.2"
   }
 }
