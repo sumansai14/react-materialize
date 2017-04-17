@@ -1,21 +1,18 @@
 require('babel-register');
 
-var express = require('express');
-var app = express();
-var React = require('react');
-var ReactDOMServer = require('react-dom/server');
-var Root = require('./src/Root.js');
+import express from 'express';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import Root from './src/Root';
+
+const app = express();
+const PORT = 4000;
 
 app.use(express.static('dist'));
 
-app.get('/', function (request, response) {
-  var html = ReactDOMServer.renderToString(
-    React.createElement(Root)
-  );
-  response.send(html);
+app.get('/', (req, res) => {
+  var html = ReactDOMServer.renderToString(<Root />);
+  res.send(html);
 });
 
-var PORT = 4000;
-app.listen(PORT, function () {
-  console.log('http://locahost:' + PORT);
-});
+app.listen(PORT, () => console.log('http://locahost:' + PORT));

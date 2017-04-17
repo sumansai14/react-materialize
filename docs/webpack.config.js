@@ -1,20 +1,19 @@
-var path = require('path');
+const path = require('path');
 
-const config = {
+export default {
   entry: './client.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: '/node_modules'
+        exclude: '/node_modules/'
       }
     ]
   }
 };
-
-module.exports = config;

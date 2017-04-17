@@ -1,7 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Root = require('./src/Root');
+import React from 'react';
+import { render } from 'react-dom';
+import Root from './src/Root';
 
-ReactDOM.render(
-  React.createElement(Root), document
-);
+render(<Root />, document);
