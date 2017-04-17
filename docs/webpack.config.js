@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: './client.js',
@@ -8,12 +9,13 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: '/node_modules/'
-      }
-    ]
-  }
+    rules: [{
+      test: /\.(js|jsx)$/,
+      use: 'babel-loader',
+      exclude: '/node_modules/'
+    }]
+  },
+  plugins: [
+    new webpack.NamedModulesPlugin()
+  ]
 };
