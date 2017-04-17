@@ -1,6 +1,6 @@
-const path = require('path');
+var path = require('path');
 
-export default {
+module.exports = {
   entry: './client.js',
   output: {
     filename: 'bundle.js',
