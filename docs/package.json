@@ -24,6 +24,8 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "nodemon": "^1.11.0",
+    "react-router-dom": "^4.1.1",
+    "source-map-support": "^0.4.14",
     "webpack": "^2.4.1"
   }
 }

@@ -1,18 +1,22 @@
-require('babel-register');
-
 import express from 'express';
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { StaticRouter as Router } from 'react-router';
+import render from './src/render';
 import Root from './src/Root';
+import sourceMapSupport from 'source-map-support';
+
+sourceMapSupport.install();
 
 const app = express();
+app.use(express.static('dist'));
 const PORT = 4000;
 
-app.use(express.static('dist'));
-
-app.get('/', (req, res) => {
-  var html = ReactDOMServer.renderToString(<Root />);
-  res.send(html);
+app.get('*', (req, res) => {
+  res.status(200).send(render((
+    <Router context={{}} location={req.url}>
+      <Root />
+    </Router>
+  )));
 });
 
 app.listen(PORT, () => console.log('http://locahost:' + PORT));
