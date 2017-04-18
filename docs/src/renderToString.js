@@ -12,4 +12,3 @@ export default (component) => `<!DOCTYPE html>
     <script src="/bundle.js"></script>
   </body>
 </html>`;
-

@@ -1,18 +1,23 @@
 var path = require('path');
 var webpack = require('webpack');
+var PATH = path.resolve(__dirname, 'dist');
 
 module.exports = {
-  entry: './client.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    './client.js'
+  ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: PATH,
+    publicPath: PATH
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
       use: 'babel-loader',
-      exclude: '/node_modules/'
+      exclude: 'node_modules/'
     }]
   },
   plugins: [
