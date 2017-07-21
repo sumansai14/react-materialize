@@ -1,66 +1,50 @@
 import React from 'react';
 import Row from 'Row';
 import Col from 'Col';
+import Section from 'Section';
 import ReactPlayground from './ReactPlayground';
 import PropTable from './PropTable';
-import Samples from './Samples';
 import ButtonCode from '!raw-loader!Button';
 
-import raisedButton from '../../../examples/RaisedButton';
-import fixedActionButton from '../../../examples/FixedActionButton';
-import floatingButton from '../../../examples/FloatingButton';
-import horizontalFab from '../../../examples/HorizontalFAB';
-import buttonAsLink from '../../../examples/ButtonAsLink';
+const header = 'Buttons';
+const desc = `There are 3 main button types described in material design.
+  The raised button is a standard button that signify actions and seek to
+  give depth to a mostly flat page. The floating circular action button
+  is meant for very important functions. Flat buttons are usually used
+  within elements that already have depth like cards or modals.`;
 
 const ButtonsPage = () => (
   <Row>
-    <Col m={9} s={12} l={10}>
-      <p className='caption'>
-        There are 3 main button types described in material design. The raised button is a standard button that signify actions and seek to give depth to a mostly flat page. The floating circular action button is meant for very important functions. Flat buttons are usually used within elements that already have depth like cards or modals.
-      </p>
-      <h4 className='col s12'>
-        Raised
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.raisedButton}>
-          {raisedButton}
-        </ReactPlayground>
-      </Col>
-      <h4 className='col s12'>
-        Floating
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.floatingButton}>
-          {floatingButton}
-        </ReactPlayground>
-      </Col>
-      <h4 className='col s12'>
-        Fixed Action Button
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.fixedActionButton}>
-          {fixedActionButton}
-        </ReactPlayground>
-      </Col>
-      <h4 className='col s12'>
-        Horizontal FAB
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.horizontalFab}>
-          {horizontalFab}
-        </ReactPlayground>
-      </Col>
-      <h4 className='col s12'>
-        Button as Link
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.buttonAsLink}>
-          {buttonAsLink}
-        </ReactPlayground>
-      </Col>
-      <Col s={12}>
-        <PropTable header='Buttons' component={ButtonCode} />
-      </Col>
+    <Col s={12}>
+      <Section>
+        <p className='caption'>{desc}</p>
+        <h4>Raised</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/RaisedButton.js')} />
+      </Section>
+
+      <Section>
+        <h4>Floating</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/FloatingButton.js')} />
+      </Section>
+
+      <Section>
+        <h4>Fixed Action Button</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/FixedActionButton.js')} />
+      </Section>
+
+      <Section>
+        <h4>Horizontal FAB</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/HorizontalFAB.js')} />
+      </Section>
+
+      <Section>
+        <h4>Button as Link</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/ButtonAsLink.js')} />
+      </Section>
+
+      <Section>
+        <PropTable header={header} component={ButtonCode} />
+      </Section>
     </Col>
   </Row>
 );
