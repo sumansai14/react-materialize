@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from 'Row';
 import Col from 'Col';
+import Section from 'Section';
 import ReactPlayground from './ReactPlayground';
 import PropTable from './PropTable';
 import Samples from './Samples';
@@ -9,39 +10,33 @@ import badgeDropdowns from '../../../examples/BadgeDropdowns';
 import badgeNavbar from '../../../examples/BadgeNavbar';
 import BadgesCode from '!raw-loader!Badge';
 
+const header = 'Badges';
+const desc = `Badges can notify you that there are new or unread
+  messages or notifications. Add the 'newIcon' prop to the badge
+  to give it the background.`;
+
 const BadgesPage = () => (
   <Row>
-    <Col m={9} s={12} l={10}>
-      <p className='caption'>
-        Badges can notify you that there are new or unread messages or notifications. Add the `newIcon` prop to the badge to give it the background.
-      </p>
-      <h4 className='col s12'>
-        Collection
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.badgeCollections}>
-          {badgeCollections}
-        </ReactPlayground>
-      </Col>
-      <h4 className='col s12'>
-        Badges in Dropdown
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.badgeDropdowns}>
-          {badgeDropdowns}
-        </ReactPlayground>
-      </Col>
-      <h4 className='col s12'>
-        Badges in Navbar
-      </h4>
-      <Col s={12}>
-        <ReactPlayground code={Samples.badgeNavbar}>
-          {badgeNavbar}
-        </ReactPlayground>
-      </Col>
-      <Col s={12}>
-        <PropTable header='Badges' component={BadgesCode} />
-      </Col>
+    <Col s={12}>
+      <Section>
+        <p className='caption'>{desc}</p>
+        <h4>Collection</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/BadgeCollections.js')} />
+      </Section>
+
+      <Section>
+        <h4>Badges in Dropdown</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/BadgeDropdowns.js')} />
+      </Section>
+
+      <Section>
+        <h4>Badges in Navbar</h4>
+        <ReactPlayground code={require('!raw-loader!../../../examples/BadgeNavbar.js')} />
+      </Section>
+
+      <Section>
+        <PropTable header={header} component={BadgesCode} />
+      </Section>
     </Col>
   </Row>
 );
