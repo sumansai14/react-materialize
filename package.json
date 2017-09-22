@@ -2,7 +2,7 @@
   "name": "react-materialize",
   "version": "1.0.14",
   "description": "Material design components for react",
-  "main": "./lib/react-materialize.js",
+  "main": "./src/index.js",
   "files": [
     "LICENSE",
     "README.md",
@@ -13,6 +13,7 @@
     "test:watch": "mocha --watch",
     "pretest": "npm run lint",
     "build": "babel ./src --out-dir ./lib",
+    "copy-files": "./scripts/copy-files.js",
     "lint": "eslint src test; exit 0",
     "fix": "eslint src test --fix",
     "release": "npm run build && npm publish"

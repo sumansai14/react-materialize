@@ -1,0 +1,15 @@
+bower.json
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+package-lock.json
+
+docs/
+examples/
+node_modules/
+test/
+
+.babelrc
+.eslintignore
+.eslintrc
+.gitignore
+.travis.yml
