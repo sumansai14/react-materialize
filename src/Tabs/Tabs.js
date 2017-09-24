@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import idgen from './idgen';
+import idgen from '../utils/idgen';
 import cx from 'classnames';
 
-import Row from './Row';
-import Col from './Col';
+import Row from '../Row';
+import Col from '../Col';
 
 class Tabs extends Component {
   componentDidMount () {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import constants from './constants';
 import cx from 'classnames';
-import Icon from './Icon';
-import idgen from './idgen';
+import Icon from '../Icon';
+import idgen from '../utils/idgen';
+import constants from '../utils/constants';
 
 class Button extends Component {
   constructor (props) {

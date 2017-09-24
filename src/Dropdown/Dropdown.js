@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import idgen from './idgen';
+import idgen from '../utils/idgen';
 import cx from 'classnames';
 
 const classes = {

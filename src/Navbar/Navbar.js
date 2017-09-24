@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Col from './Col';
-import Icon from './Icon';
+import Col from '../Col';
+import Icon from '../Icon';
 
 class Navbar extends Component {
   constructor (props) {

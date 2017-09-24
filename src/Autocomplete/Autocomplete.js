@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import constants from './constants';
-import Icon from './Icon';
+import constants from '../utils/constants';
+import Icon from '../Icon';
 
 class Autocomplete extends Component {
   constructor (props) {

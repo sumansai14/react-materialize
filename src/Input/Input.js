@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import idgen from './idgen';
-import constants from './constants';
-import Icon from './Icon';
+import idgen from '../utils/idgen';
+import constants from '../utils/constants';
+import Icon from '../Icon';
 
 class Input extends Component {
   constructor (props) {

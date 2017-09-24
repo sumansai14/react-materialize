@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Row from './Row';
-import Col from './Col';
+import Row from '../Row';
+import Col from '../Col';
 
 class Footer extends Component {
   render () {

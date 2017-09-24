@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
+import Button from '../Button';
 import cx from 'classnames';
-import OverlayTrigger from './OverlayTrigger';
-import idgen from './idgen';
+import OverlayTrigger from '../OverlayTrigger';
+import idgen from '../utils/idgen';
 
 class Modal extends Component {
   constructor (props) {

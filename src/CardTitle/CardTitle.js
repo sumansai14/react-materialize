@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import constants from './constants';
+import constants from '../utils/constants';
 
 class CardTitle extends Component {
   render () {
