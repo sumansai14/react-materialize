@@ -68,10 +68,14 @@ const devConfig = {
   module: {
     rules: [{
       test: /\.css$/,
-      loader: 'style-loader!css-loader?sourceMap?convertToAbsoluteUrls'
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      })
     }]
   },
   plugins: [
+    new ExtractTextPlugin('application.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
