@@ -2,9 +2,12 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 
-const Docs = ({ data, location }) => {
-  const { markDownRemark: post } = data;
+const Docs = ({
+  data // this prop will be injected by the GraphQL query below.
+}) => {
+  const { markdownRemark: post } = data;
   const { frontmatter, html } = post;
+  const { title, date } = frontmatter;
 
   return (
     <div>
@@ -19,5 +22,18 @@ const Docs = ({ data, location }) => {
     </div>
   );
 }
+
+export const pageQuery = graphql`
+  query BlogPostByPath($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        path
+        title
+      }
+    }
+  }
+`;
 
 export default Docs;
