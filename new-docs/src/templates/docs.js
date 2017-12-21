@@ -1,13 +1,13 @@
-import React from 'react';
-import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
+import React from 'react'
+import Link from 'gatsby-link'
+import Helmet from 'react-helmet'
 
 const Docs = ({
-  data // this prop will be injected by the GraphQL query below.
+  data, // this prop will be injected by the GraphQL query below.
 }) => {
-  const { markdownRemark: post } = data;
-  const { frontmatter, html } = post;
-  const { title } = frontmatter;
+  const { markdownRemark: post } = data
+  const { frontmatter, html } = post
+  const { title } = frontmatter
 
   return (
     <div>
@@ -16,10 +16,10 @@ const Docs = ({
       <div>
         <h1>{title}</h1>
 
-        <div dangerouslySetInnerHTML={{__html: html}} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </div>
-  );
+  )
 }
 
 export const pageQuery = graphql`
@@ -32,6 +32,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default Docs;
+export default Docs
