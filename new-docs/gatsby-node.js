@@ -14,17 +14,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     resolve(
       graphql(`
         {
-          allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___date] }
-            limit: 1000
-          ) {
+          allMarkdownRemark {
             edges {
               node {
-                excerpt(pruneLength: 250)
                 html
-                id
                 frontmatter {
-                  date
                   path
                   title
                 }

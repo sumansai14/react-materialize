@@ -7,15 +7,14 @@ const Docs = ({
 }) => {
   const { markdownRemark: post } = data;
   const { frontmatter, html } = post;
-  const { title, date } = frontmatter;
+  const { title } = frontmatter;
 
   return (
     <div>
-      <Helmet title={`${title} - docs`} />
+      <Helmet title={title} />
 
       <div>
         <h1>{title}</h1>
-        <h3>{date}</h3>
 
         <div dangerouslySetInnerHTML={{__html: html}} />
       </div>
@@ -28,7 +27,6 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
         path
         title
       }
