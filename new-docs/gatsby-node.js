@@ -20,7 +20,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
                 html
                 frontmatter {
                   path
-                  title
+                  section
                 }
               }
             }
@@ -34,8 +34,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         const posts = result.data.allMarkdownRemark.edges;
 
         posts.forEach(({ node }) => {
+          const { path, section } = node.frontmatter;
+
           createPage({
-            path: node.frontmatter.path,
+            path: `${path}`,
             component: template
           });
         });
